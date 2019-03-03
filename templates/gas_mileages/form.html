@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+        <form method="POST" action="{% url 'gas_mileages:delete' mileage.id %}" class="ui form">
+            {% csrf_token %}
+            <input type="hidden" name="user.id" value="{{ mileage.id }}">
+            <div>
+                <label>給油日</label><input name="refill_date" type="date" value="" placeholder="給油">
+            </div>
+            <div>
+                <label>距離</label><input name="trip" type="number" value="" placeholder="距離">
+            </div>
+            <div>
+                <label>給油量</label><input name="amount" type="number" value="" placeholder="給油量">
+            </div>
+            <div>
+                <label>金額</label><input name="price" type="number" value="" placeholder="金額">
+            </div>
+            <div>
+                <label>メモ</label><input name="remark" type="text" value="" >
+            </div>
+            <button type="submit" value="submit">登録</button>
+        </form>
+{% endblock %}

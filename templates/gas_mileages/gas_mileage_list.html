@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h1>燃費リスト</h1>
+    <a href=""
+    ></a>
+    {% for mileage in mileage_list %}
+        <form method="POST" action="{% url 'gas_mileages:delete' mileage.id %}" class="ui form">
+            {% csrf_token %}
+            <div class="">
+                <div>
+                    <span>
+                        {{ mileage.refill_date }}
+                    </span>
+                    <span>
+                        {{ mileage.amount }}
+                    </span>
+                    <a href="{% url 'gas_mileages:delete' mileage.id %}">削除</a>
+{#                    <button type="submit" value="DELETE">削除</button>#}
+                </div>
+            </div>
+        </form>
+    {% endfor %}
+{% endblock %}
