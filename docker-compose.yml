@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/conf:/etc/nginx/conf.d
+      - ./docker/nginx/uwsgi_params:/etc/nginx/uwsgi_params
+      - ./static:/static
+      - ./docker/nginx/log:/var/log/nginx
+    depends_on:
+      - app
+  app:
+    build: ./docker/python
+    volumes:
+      - ./:/code
+    command:  uwsgi --ini /code/django_practice/django.ini
+    # command: python manage.py runserver 8000 #127.0.0.1:8000
+    expose:
+      - "8000"
+    depends_on:
+      - db
+  db:
+    image: mysql
+    volumes:
+      - "./docker/sql/db:/var/lib/mysql"
+      - "./docker/sql/init:/docker-entrypoint-initdb.d"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: django
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: django_tutorial
+      TZ: "Asia/Tokyo"
+    ports:
+      - "3306:3306"
+
+volumes:
+  db:
