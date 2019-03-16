@@ -82,7 +82,6 @@ DATABASES = {
         'NAME': 'django_tutorial',
         'USER': 'root',
         'PASSWORD': 'password',
-        'HOST': 'db',
         'PORT': 3306,
     },
 }

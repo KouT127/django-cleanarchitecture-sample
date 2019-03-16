@@ -17,7 +17,7 @@ class IndexView(View):
         # keyword = request.GET.get('keyword')
         # if keyword:
         # queryset = queryset.filter(
-        #     Q(user_id__icontains=1) | Q(description__icontains=1)
+        #     Q(dser_id__icontains=1) | Q(description__icontains=1)
         # )
         context = {
             'mileage_list': queryset,
