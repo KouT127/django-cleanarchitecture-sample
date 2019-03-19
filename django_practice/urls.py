@@ -21,5 +21,8 @@ from django_practice.users.views import LoginView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('mileage/', include('django_practice.gas_mileages.urls')),
-    path('login/', LoginView.as_view(), name="login")
+    path('login/', LoginView.as_view(), name="login"),
+    path('api/v1/', include('django_practice.v1.gas_mileages.urls'))
 ]
+
+urlpatterns += [url(r'^silk/', include('silk.urls', namespace='silk'))]

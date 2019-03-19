@@ -2,9 +2,9 @@ from django.db import models
 from django_practice.motorcycles.models import Motorcycle
 from django_practice.users.models import User
 
-class GasMileage(models.Model):
 
-    user = models.ForeignKey(User ,on_delete=models.CASCADE)
+class GasMileage(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     bike = models.ForeignKey(Motorcycle, on_delete=models.CASCADE)
 
     refill_date = models.DateField()
