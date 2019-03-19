@@ -8,30 +8,48 @@ from django_practice.users.models import User
 class V1GasMileageSerializer(serializers.ModelSerializer):
     class Meta:
         model = GasMileage
-        fields = ('bike', 'id', 'amount',)
+        fields = ('bike',
+                  'user',
+                  'id',
+                  'amount',
+                  'price',
+                  'trip',
+                  'refill_date',
+                  'remark')
 
     def to_representation(self, instance):
-        bike = Motorcycle.objects.all()
-        bike_serializer = V1MotorcycleSerializer(bike, many=True)
         return dict(
-            refill_date=instance.refill_date,
+            id=instance.id,
             amount=instance.amount,
-            bike=bike_serializer.data,
+            price=instance.price,
+            bike=V1MotorcycleSerializer(instance.bike).data
         )
 
 
 class V1GasMileageSearchSerializer(serializers.ModelSerializer):
     gasMileages = None
-    bike = None
 
     def search(self):
-        self.gasMileages = GasMileage.objects.filter(
-            user__uuid='5ee0a92d-74ae-4753-a416-56487627ca74').prefetch_related()
-        # self.bike = Motorcycle.objects.filter(gasmileage__in=self.gasMileages)
+        self.gasMileages = GasMileage.objects.prefetch_related()
+        for mileage in self.gasMileages:
+            mileage.bike = Motorcycle.objects.get(pk=mileage.bike.id)
         return self
+
+
+class V1GasMileageResultSerializer(serializers.ModelSerializer):
+
+    def to_representation(self, instance: V1GasMileageSearchSerializer):
+        return dict(
+            message='ok',
+            gasMileages=V1GasMileageSerializer(instance.gasMileages, many=True).data
+        )
 
 
 class V1MotorcycleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Motorcycle
-        fields = ('manufacturer', 'name')
+        fields = ('manufacturer',
+                  'name',
+                  'type',
+                  'engine_displacement',
+                  'model_year')
