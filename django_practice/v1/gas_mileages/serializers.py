@@ -1,5 +1,5 @@
-from django.db.models import QuerySet
 from rest_framework import serializers
+
 from django_practice.gas_mileages.models import GasMileage
 from django_practice.motorcycles.models import Motorcycle
 from django_practice.users.models import User
@@ -9,7 +9,7 @@ class V1GasMileageSerializer(serializers.ModelSerializer):
     class Meta:
         model = GasMileage
         fields = ('bike',
-                  'user',
+                  'user'
                   'id',
                   'amount',
                   'price',
@@ -22,7 +22,8 @@ class V1GasMileageSerializer(serializers.ModelSerializer):
             id=instance.id,
             amount=instance.amount,
             price=instance.price,
-            bike=V1MotorcycleSerializer(instance.bike).data
+            bike=V1MotorcycleSerializer(instance.bike).data,
+            user=V1UserSerializer(instance.user).data
         )
 
 
@@ -30,9 +31,8 @@ class V1GasMileageSearchSerializer(serializers.ModelSerializer):
     gasMileages = None
 
     def search(self):
-        self.gasMileages = GasMileage.objects.prefetch_related()
-        for mileage in self.gasMileages:
-            mileage.bike = Motorcycle.objects.get(pk=mileage.bike.id)
+        # Joinでくっつける
+        self.gasMileages = GasMileage.objects.select_related('user', 'bike')
         return self
 
 
@@ -53,3 +53,12 @@ class V1MotorcycleSerializer(serializers.ModelSerializer):
                   'type',
                   'engine_displacement',
                   'model_year')
+
+
+class V1UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            'username',
+            'email'
+        )

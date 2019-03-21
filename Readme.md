@@ -12,4 +12,24 @@ virtualenvでライブラリ等を管理する　　
 
 envから抜ける
 
-    deactivate    
+    deactivate  
+    
+    
+select_related
+
+    １対１
+    多対１
+    
+    
+prefetch_related
+
+    一対多
+    多対多
+
+prefetch(prefetch_relatedをコントロールする)
+    クエリセットにPrefetchの下の階層のデータで行って欲しいQuery、to_attrで別名つけてall()のようにおこえる
+
+    Prefetch('choice_set', queryset=voted_choices, to_attr='voted_choices')
+    
+   
+https://mkai.hateblo.jp/entry/2018/11/05/234611  
