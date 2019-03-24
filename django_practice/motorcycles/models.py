@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Motorcycle(models.Model):
     SCOUTER = 'sc'
     BIG_SCOUTER = 'bs'
@@ -7,11 +8,11 @@ class Motorcycle(models.Model):
     OFFROAD = 'of'
 
     MOTORCYCLE_TYPES = (
-                    (SCOUTER, 'Scouter'),
-                    (BIG_SCOUTER, 'Big_Scouter'),
-                    (SUPER_SPORTS, 'Super_Sport'),
-                    (OFFROAD, 'Offroad'),
-                )
+        (SCOUTER, 'Scouter'),
+        (BIG_SCOUTER, 'Big_Scouter'),
+        (SUPER_SPORTS, 'Super_Sport'),
+        (OFFROAD, 'Offroad'),
+    )
 
     YAMAHA = 'ya'
     HONDA = 'ho'
@@ -19,11 +20,11 @@ class Motorcycle(models.Model):
     SUZUKI = 'su'
 
     MANUFACTURERS = (
-                     (YAMAHA, 'YAMAHA'),
-                     (HONDA, 'HONDA'),
-                     (KAWASAKI, 'KAWASAKI'),
-                     (SUZUKI, 'SUZUKI'),
-                 )
+        (YAMAHA, 'YAMAHA'),
+        (HONDA, 'HONDA'),
+        (KAWASAKI, 'KAWASAKI'),
+        (SUZUKI, 'SUZUKI'),
+    )
 
     manufacturer = models.CharField(
         max_length=20,

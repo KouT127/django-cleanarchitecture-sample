@@ -14,7 +14,12 @@ envから抜ける
 
     deactivate  
     
-    
+   
+OneToOne
+   
+   ユニークであるならば使える
+   それ以外はManyToManyの可能性がある
+   
 select_related
 
     １対１

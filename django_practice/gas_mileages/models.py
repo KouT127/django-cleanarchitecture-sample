@@ -5,7 +5,7 @@ from django_practice.users.models import User
 
 class GasMileage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    bike = models.OneToOneField(Motorcycle, on_delete=models.CASCADE)
+    bike = models.ManyToManyField(Motorcycle)
 
     refill_date = models.DateField()
 
@@ -26,5 +26,5 @@ class GasMileage(models.Model):
         max_length=150,
     )
 
-    def __str__(self):
-        return self.user.username + ' ' + self.bike.name
+    # def __str__(self):
+    #     return self.user.username + ' ' + self.bike.name
