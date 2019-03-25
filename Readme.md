@@ -71,5 +71,13 @@ Conf
     -e MYSQL_ALLOW_EMPTY_PASSWORD=yes \
     -e MYSQL_DATABASE=stgo \
     -p 3306:3306 --name mysql mysql:5.7
+    
+Javascript scroll
+
+    var position = document.getElementsByClassName('h2class')[0].getBoundingClientRect().top
+
+    function scrollToTop() {
+      scrollTo(0, position);
+    }
    
 https://mkai.hateblo.jp/entry/2018/11/05/234611  
