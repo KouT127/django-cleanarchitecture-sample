@@ -39,9 +39,10 @@ prefetch(prefetch_relatedをコントロールする)
 Dockerで行う場合
 mysqlclientでなく、
 PyMySQLで行えば大丈夫な場合がある。 
-pip install PyMySQL
 
-import pymysql
-pymysql.install_as_MySQLdb()
+    pip install PyMySQL
+
+    import pymysql
+    pymysql.install_as_MySQLdb()
    
 https://mkai.hateblo.jp/entry/2018/11/05/234611  
