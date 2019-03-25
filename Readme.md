@@ -36,5 +36,8 @@ prefetch(prefetch_relatedをコントロールする)
 
     Prefetch('choice_set', queryset=voted_choices, to_attr='voted_choices')
     
+Dockerで行う場合
+mysqlclientでなく、
+PyMySQLで行えば大丈夫な場合がある。 
    
 https://mkai.hateblo.jp/entry/2018/11/05/234611  
