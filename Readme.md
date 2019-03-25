@@ -44,5 +44,8 @@ PyMySQLで行えば大丈夫な場合がある。
 
     import pymysql
     pymysql.install_as_MySQLdb()
+    
+使用中のポートを確認する
+    lsof  -i:80
    
 https://mkai.hateblo.jp/entry/2018/11/05/234611  
