@@ -50,6 +50,20 @@ PyMySQLで行えば大丈夫な場合がある。
     
 Conf
 
+    [mysqld]
+    pid-file        = /var/run/mysqld/mysqld.pid
+    socket          = /var/run/mysqld/mysqld.sock
+    datadir         = /var/lib/mysql
+    secure-file-priv= NULL
+    # Disabling symbolic-links is recommended to prevent assorted security risks
+    symbolic-links=0
+    character-set-server=utf8mb4
+
+    [client]
+    default-character-set=utf8mb4
+
+
+
     docker run -d \
     -v $PWD/db:/var/lib/mysql \
     -v $PWD/init:/docker-entrypoint-initdb.d \
