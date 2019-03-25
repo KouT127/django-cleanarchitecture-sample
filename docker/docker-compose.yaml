@@ -1,0 +1,23 @@
+
+#　1. Confをコメントアウトした状態でdocker-compose
+#  2. docker exec -it mysql bash後に中で、
+#     mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -uroot mysql
+#  3.Confを追加しdocker-compose
+#  左記で確認　show variables like '%time_zone%';
+
+version: '3'
+services:
+  db:
+    container_name: mysql
+    image: mysql:8.0
+    volumes:
+#      - "./conf:/etc/mysql/"
+      - "./db:/var/lib/mysql"
+    environment:
+      MYSQL_DATABASE: django_tutorial
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      TZ: "Asia/Tokyo"
+    ports:
+      - "3306:3306"
+volumes:
+  db:
