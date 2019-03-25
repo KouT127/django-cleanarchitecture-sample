@@ -47,5 +47,15 @@ PyMySQLで行えば大丈夫な場合がある。
     
 使用中のポートを確認する
     lsof  -i:80
+    
+Conf
+
+    docker run -d \
+    -v $PWD/db:/var/lib/mysql \
+    -v $PWD/init:/docker-entrypoint-initdb.d \
+    -v $PWD/conf:/etc/mysql/ \
+    -e MYSQL_ALLOW_EMPTY_PASSWORD=yes \
+    -e MYSQL_DATABASE=stgo \
+    -p 3306:3306 --name mysql mysql:5.7
    
 https://mkai.hateblo.jp/entry/2018/11/05/234611  
