@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from django_practice.motorcycles.models import Motorcycle
 from django_practice.users.models import User
 from django_practice.v1.gas_mileages.serializers import V1GasMileageSearchSerializer, V1GasMileageResultSerializer
 from django_practice.v1.motorcycles.serializers import V1MotorcycleSerializer
@@ -28,3 +29,10 @@ class V1UserView(APIView):
 
         result = V1UserResultSerializer(user)
         return Response(result.data)
+
+    def post(self, request):
+        user = User.object.filter(username__contains='test').first()
+        bike = Motorcycle.objects.filter(name__contains='R1000').first()
+        user.own.add(bike)
+        user.save()
+        return Response({'succeeded': True})
