@@ -1,3 +1,4 @@
+from django_filters import models
 from rest_framework import serializers
 
 from django_practice.gas_mileages.models import GasMileage
@@ -33,3 +34,20 @@ class V1GasMileageResultSerializer(serializers.ModelSerializer):
         return dict(
             gasMileages=V1GasMileageSerializer(instance.gasMileages, many=True).data
         )
+
+
+class V1GasMileageValidationSerializer(serializers.ModelSerializer):
+    refill_date = serializers.DateField()
+    trip = serializers.IntegerField()
+    amount = serializers.DecimalField(
+        decimal_places=2,
+        max_digits=8,
+    )
+    price = serializers.DecimalField(
+        decimal_places=2,
+        max_digits=8
+    )
+    remark = serializers.CharField(
+        allow_blank=True,
+        max_length=150,
+    )
