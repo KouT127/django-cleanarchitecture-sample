@@ -5,8 +5,6 @@ from rest_framework.views import APIView
 from django_practice.gas_mileages.models import GasMileage
 from django_practice.motorcycles.models import Motorcycle
 from django_practice.users.models import User
-from django_practice.v1.gas_mileages.serializers import V1GasMileageSerializer, V1GasMileageSearchSerializer, \
-    V1MotorcycleSerializer, V1GasMileageResultSerializer
 
 
 class V1GasMileageView(APIView):
@@ -17,11 +15,11 @@ class V1GasMileageView(APIView):
         # obj = serializers.search()
         # result = V1GasMileageResultSerializer(obj)
 
-        mileages = GasMileage.objects.filter(bike__name__contains='R1').prefetch_related(Prefetch('bike__gasmileage_set'))
-        print(mileages)
-        # for mileage in mileages:
-        #     mile: GasMileage = mileage
-        #     print(mile.bike.first().name)
+        mileages = GasMileage.objects.prefetch_related()
+        for mileage in mileages:
+            mile: GasMileage = mileage
+            mi
+            print(mileage.bike.all())
         return Response({'message': 'ok'})
 
 
