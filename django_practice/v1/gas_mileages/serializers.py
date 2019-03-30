@@ -12,8 +12,11 @@ class V1GasMileageSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         return dict(
             id=instance.id,
+            refill_date=instance.refill_date,
             amount=instance.amount,
             price=instance.price,
+            trip=instance.trip,
+            remark=instance.remark,
             bike=V1MotorcycleSerializer(instance.bike.first()).data,
         )
 
@@ -36,7 +39,8 @@ class V1GasMileageResultSerializer(serializers.ModelSerializer):
         )
 
 
-class V1GasMileageValidationSerializer(serializers.ModelSerializer):
+class V1GasMileageValidationSerializer(serializers.Serializer):
+    motorcycle_name = serializers.CharField()
     refill_date = serializers.DateField()
     trip = serializers.IntegerField()
     amount = serializers.DecimalField(
@@ -48,6 +52,8 @@ class V1GasMileageValidationSerializer(serializers.ModelSerializer):
         max_digits=8
     )
     remark = serializers.CharField(
+        required=False,
         allow_blank=True,
+        default='',
         max_length=150,
     )

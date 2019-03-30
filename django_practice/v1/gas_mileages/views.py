@@ -20,11 +20,15 @@ class V1GasMileageView(APIView):
 
     def post(self, request):
         user = User.object.first()
-        result = V1GasMileageValidationSerializer(request)
+        result = V1GasMileageValidationSerializer(data=request.data)
         if result.is_valid():
             print(result.validated_data)
+            data = result.validated_data
+            bike = Motorcycle.objects.filter(name__contains=data.motorcycle_name).first()
+            print(bike)
             # user.gasmileage_set.add()
             return Response({'message': 'ok'})
+        print(result.errors.__str__())
         return Response({'message': 'ng'})
 
 
