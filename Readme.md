@@ -81,3 +81,9 @@ Javascript scroll
     }
    
 https://mkai.hateblo.jp/entry/2018/11/05/234611  
+
+##Swagger-API
+
+クラスのプロパティに定義すると、表示される様になる。
+プロパティとして登録するが、あくまで表示のみとして使用する場合もある模様
+

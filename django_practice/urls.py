@@ -16,8 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from drf_yasg import openapi
+from drf_yasg.generators import OpenAPISchemaGenerator
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
+from django_practice.settings import DEBUG
 from django_practice.users.views import LoginView
 
 urlpatterns = [
@@ -30,3 +35,19 @@ urlpatterns = [
     path('api/v1/verify/', verify_jwt_token),
     path('silk/', include('silk.urls', namespace='silk')),
 ]
+schema_view = get_schema_view(
+    openapi.Info(
+        title="API",
+        default_version='v1',
+        description="description",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@snippets.local"),
+    ),
+    patterns=[path('/v1', include('django_practice.v1.gas_mileages.urls'))],
+    generator_class=OpenAPISchemaGenerator,
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+
+urlpatterns += [url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json')]
+urlpatterns += [url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui')]

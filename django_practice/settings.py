@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_jwt',
     'silk',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +151,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+

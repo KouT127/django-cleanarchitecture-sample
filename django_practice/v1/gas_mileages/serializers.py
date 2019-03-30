@@ -1,29 +1,34 @@
-from django_filters import models
 from rest_framework import serializers
 
 from django_practice.gas_mileages.models import GasMileage
-from django_practice.motorcycles.models import Motorcycle
-from django_practice.users.models import User
 from django_practice.v1.motorcycles.serializers import V1MotorcycleSerializer
 
 
 class V1GasMileageSerializer(serializers.ModelSerializer):
+    # fieldsにbikeを記述をしつつ、V1MotorcycleSerializer()
+    bike = V1MotorcycleSerializer()
 
     def to_representation(self, instance):
-        return dict(
-            id=instance.id,
-            refill_date=instance.refill_date,
-            amount=instance.amount,
-            price=instance.price,
-            trip=instance.trip,
-            remark=instance.remark,
-            bike=V1MotorcycleSerializer(instance.bike.first()).data,
-        )
+        # super().to_representation(instance)を使用する場合、ModelSerializerを継承する必要がある。
+        result = super().to_representation(instance)
+        result['bike'] = V1MotorcycleSerializer(instance.bike.first()).data
+        return result
+
+    class Meta:
+        model = GasMileage
+        fields = [
+            'id',
+            'refill_date',
+            'trip',
+            'amount',
+            'price',
+            'remark',
+            'bike',
+        ]
 
 
-class V1GasMileageSearchSerializer(serializers.ModelSerializer):
+class V1GasMileageSearchSerializer(serializers.Serializer):
     gasMileages = None
-    bike = None
 
     def search(self):
         # Joinでくっつける
@@ -31,11 +36,14 @@ class V1GasMileageSearchSerializer(serializers.ModelSerializer):
         return self
 
 
-class V1GasMileageResultSerializer(serializers.ModelSerializer):
+class V1GasMileageResultSerializer(serializers.Serializer):
+    # Swagger-API表示用
+    gas_mileages = V1GasMileageSerializer()
 
     def to_representation(self, instance: V1GasMileageSearchSerializer):
+        gas_mileages = V1GasMileageSerializer(instance.gasMileages, many=True)
         return dict(
-            gasMileages=V1GasMileageSerializer(instance.gasMileages, many=True).data
+            gas_mileages=gas_mileages.data
         )
 
 
@@ -57,3 +65,9 @@ class V1GasMileageValidationSerializer(serializers.Serializer):
         default='',
         max_length=150,
     )
+
+    def create(self, validated_data):
+        pass
+
+    def update(self, instance, validated_data):
+        pass

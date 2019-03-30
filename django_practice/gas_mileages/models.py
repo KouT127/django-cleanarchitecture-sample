@@ -25,6 +25,3 @@ class GasMileage(models.Model):
         blank=True,
         max_length=150,
     )
-
-    # def __str__(self):
-    #     return self.user.username + ' ' + self.bike.name
