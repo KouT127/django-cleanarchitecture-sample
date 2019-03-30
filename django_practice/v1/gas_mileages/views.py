@@ -1,17 +1,21 @@
+from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_jwt import authentication
 
 from django_practice.motorcycles.models import Motorcycle
 from django_practice.users.models import User
 from django_practice.v1.gas_mileages.serializers import V1GasMileageSearchSerializer, V1GasMileageResultSerializer, \
     V1GasMileageValidationSerializer
-from django_practice.v1.motorcycles.serializers import V1MotorcycleSerializer
-from django_practice.v1.users.serializers import V1UserSerializer, V1UserResultSerializer
+from django_practice.v1.users.serializers import V1UserResultSerializer
 
 
 class V1GasMileageView(APIView):
+    authentication_classes = (authentication.JSONWebTokenAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
+        print(request.user)
         # ForeignKeyがつくものはManyをつけないとエラー
         serializers = V1GasMileageSearchSerializer()
         obj = serializers.search()
@@ -20,12 +24,15 @@ class V1GasMileageView(APIView):
 
     def post(self, request):
         user = User.object.first()
+        User.objects.first()
         result = V1GasMileageValidationSerializer(data=request.data)
         if result.is_valid():
             print(result.validated_data)
-            data = result.validated_data
-            bike = Motorcycle.objects.filter(name__contains=data.motorcycle_name).first()
+            motorcycle_name = result.validated_data['motorcycle_name']
+            bike = Motorcycle.objects.filter(name__contains=motorcycle_name).first()
             print(bike)
+            admin: User = User.objects.filter(username__contains='admin').first()
+            admin.gasmileage_set.add()
             # user.gasmileage_set.add()
             return Response({'message': 'ok'})
         print(result.errors.__str__())

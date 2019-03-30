@@ -6,7 +6,7 @@ from django.db import models
 import uuid as uuid_lib
 
 class User(AbstractBaseUser, PermissionsMixin):
-    object = UserManager()
+    objects = UserManager()
 
     uuid = models.UUIDField(default=uuid_lib.uuid4,
                             primary_key=True, editable=False)
@@ -35,4 +35,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', ]
-

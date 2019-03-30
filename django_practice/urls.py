@@ -16,13 +16,17 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
+
 from django_practice.users.views import LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('mileage/', include('django_practice.gas_mileages.urls')),
     path('login/', LoginView.as_view(), name="login"),
-    path('api/v1/', include('django_practice.v1.gas_mileages.urls'))
+    path('api/v1/', include('django_practice.v1.gas_mileages.urls')),
+    path('api/v1/auth/', obtain_jwt_token),
+    path('api/v1/refresh/', refresh_jwt_token),
+    path('api/v1/verify/', verify_jwt_token),
+    path('silk/', include('silk.urls', namespace='silk')),
 ]
-
-urlpatterns += [url(r'^silk/', include('silk.urls', namespace='silk'))]
