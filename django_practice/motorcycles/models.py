@@ -1,7 +1,13 @@
 from django.db import models
+from django.db.models.manager import BaseManager
+
+
+class MotorcycleManager(models.Manager):
+    pass
 
 
 class Motorcycle(models.Model):
+    objects = MotorcycleManager()
     SCOUTER = 'sc'
     BIG_SCOUTER = 'bs'
     SUPER_SPORTS = 'ss'

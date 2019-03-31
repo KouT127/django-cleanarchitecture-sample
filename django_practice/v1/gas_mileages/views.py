@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_jwt import authentication
 
+from django_practice.gas_mileages.models import GasMileage
 from django_practice.motorcycles.models import Motorcycle
 from django_practice.users.models import User
 from django_practice.v1.gas_mileages.serializers import V1GasMileageSearchSerializer, V1GasMileageResultSerializer, \
@@ -33,16 +34,21 @@ class V1GasMileageView(APIView):
     def post(self, request):
         result = V1GasMileageValidationSerializer(data=request.data)
         if result.is_valid():
-            print(result.validated_data)
-            motorcycle_name = result.validated_data['motorcycle_name']
-            bike = Motorcycle.objects.filter(name__contains=motorcycle_name).first()
-            print(bike)
-            admin: User = User.objects.filter(username__contains='admin').first()
-            admin.gasmileage_set.add()
-            # user.gasmileage_set.add()
+            user: User = User.objects.filter(username__contains='admin').first()
+            gas_mileage: GasMileage = GasMileage(result.validated_data)
+            gas_mileage.user = user
+            bike = result.validated_data['bike']
+            motorcycle = Motorcycle.objects.filter(id=bike).get()
+            print(gas_mileage.bike.add())
+            gas_mileage.trip = result.validated_data['trip']
+            gas_mileage.price = result.validated_data['price']
+            gas_mileage.amount = result.validated_data['amount']
+            gas_mileage.refill_date = result.validated_data['refill_date']
+            gas_mileage.remark = result.validated_data['remark']
+            gas_mileage.save()
             return Response({'message': 'ok'}, status=200)
         print(result.errors.__str__())
-        return Response(V1ErrorMessageResultSerializer.get_initial())
+        return Response({'message': 'ng'})
 
 
 class V1UserView(APIView):

@@ -43,7 +43,7 @@ schema_view = get_schema_view(
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="contact@snippets.local"),
     ),
-    patterns=[path('/v1', include('django_practice.v1.gas_mileages.urls'))],
+    patterns=[path('/api/v1', include('django_practice.v1.gas_mileages.urls'))],
     generator_class=OpenAPISchemaGenerator,
     public=True,
     permission_classes=(permissions.AllowAny,),
