@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from django_practice.gas_mileages.models import GasMileage
 from django_practice.motorcycles.models import Motorcycle
+from django_practice.users.models import User
 from django_practice.v1.motorcycles.serializers import V1MotorcycleSerializer
 
 
@@ -69,7 +70,14 @@ class V1GasMileageValidationSerializer(serializers.Serializer):
     )
 
     def create(self, validated_data):
-        pass
+        user = User.objects.filter(username__contains='admin').first()
+        return self.update(instance=GasMileage(user=user), validated_data=validated_data)
 
     def update(self, instance, validated_data):
-        pass
+        instance.trip = validated_data.get('trip', instance.trip)
+        instance.price = validated_data.get('price', instance.price)
+        instance.amount = validated_data['amount']
+        instance.refill_date = validated_data['refill_date']
+        instance.remark = validated_data['remark']
+        instance.save()
+        return instance

@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b1075e17-0daf-4fda-bd1b-156d676d20bb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_practice/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_practice/users/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_practice/v1/gas_mileages/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_practice/v1/gas_mileages/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_practice/v1/gas_mileages/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_practice/v1/gas_mileages/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,15 +60,6 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/django_practice/users/models.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/django_practice/v1/gas_mileages/urls.py">
               <provider selected="true" editor-type-id="text-editor">
@@ -79,11 +69,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/django_practice/v1/gas_mileages/serializers.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="795">
-                  <caret line="53" column="41" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="41" />
+                <state relative-caret-position="304">
+                  <caret line="76" column="56" selection-start-line="76" selection-start-column="56" selection-end-line="76" selection-end-column="56" />
                   <folding>
                     <element signature="e#0#38#0" expanded="true" />
                   </folding>
@@ -134,8 +124,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/django_practice/v1/gas_mileages/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="437">
-                  <caret line="48" selection-start-line="48" selection-end-line="48" />
+                <state relative-caret-position="337">
+                  <caret line="39" column="67" selection-start-line="39" selection-start-column="67" selection-end-line="39" selection-end-column="67" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -219,9 +209,9 @@
         <option value="$PROJECT_DIR$/django_practice/v1/users/serializers.py" />
         <option value="$PROJECT_DIR$/django_practice/v1/motorcycles/serializers.py" />
         <option value="$PROJECT_DIR$/django_practice/motorcycles/models.py" />
-        <option value="$PROJECT_DIR$/django_practice/v1/gas_mileages/serializers.py" />
         <option value="$PROJECT_DIR$/django_practice/users/models.py" />
         <option value="$PROJECT_DIR$/django_practice/v1/gas_mileages/views.py" />
+        <option value="$PROJECT_DIR$/django_practice/v1/gas_mileages/serializers.py" />
       </list>
     </option>
   </component>
@@ -350,12 +340,12 @@
       <updated>1551599270513</updated>
       <workItem from="1551599273050" duration="18738000" />
       <workItem from="1552571241698" duration="3274000" />
-      <workItem from="1553781039202" duration="31045000" />
+      <workItem from="1553781039202" duration="32906000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90930000" />
+    <option name="totallyTimeSpent" value="92791000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -391,7 +381,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.32960597" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32960597" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25767368" />
@@ -711,32 +701,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/django_practice/v1/gas_mileages/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="53" column="41" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/django_practice/gas_mileages/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/django_practice/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1347">
-          <caret line="154" selection-start-line="154" selection-end-line="154" />
-          <folding>
-            <element signature="e#316#325#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -772,12 +742,32 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/fa01b200-24fa-47b9-9360-613c3bc2d6b7/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/django_practice/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1347">
+          <caret line="154" selection-start-line="154" selection-end-line="154" />
+          <folding>
+            <element signature="e#316#325#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/django_practice/v1/gas_mileages/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        <state relative-caret-position="337">
+          <caret line="39" column="67" selection-start-line="39" selection-start-column="67" selection-end-line="39" selection-end-column="67" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/django_practice/v1/gas_mileages/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="76" column="56" selection-start-line="76" selection-start-column="56" selection-end-line="76" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
