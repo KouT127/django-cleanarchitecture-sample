@@ -5,10 +5,11 @@ from django_practice.motorcycles.models import Motorcycle
 from django.db import models
 import uuid as uuid_lib
 
+
 class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
-    uuid = models.UUIDField(default=uuid_lib.uuid4,
+    id = models.UUIDField(default=uuid_lib.uuid4,
                             primary_key=True, editable=False)
 
     username_validator = UnicodeUsernameValidator()
@@ -31,7 +32,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name=('active'),
         default=True,
     )
-
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', ]

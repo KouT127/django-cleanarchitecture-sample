@@ -1,3 +1,5 @@
+import datetime
+
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import permissions
 from rest_framework.response import Response
@@ -34,17 +36,18 @@ class V1GasMileageView(APIView):
     def post(self, request):
         result = V1GasMileageValidationSerializer(data=request.data)
         if result.is_valid():
-            user: User = User.objects.filter(username__contains='admin').first()
-            gas_mileage: GasMileage = GasMileage(result.validated_data)
-            gas_mileage.user = user
+            user: User = User.objects.filter(username__contains='test').first()
             bike = result.validated_data['bike']
-            motorcycle = Motorcycle.objects.filter(id=bike).get()
-            print(gas_mileage.bike.add())
-            gas_mileage.trip = result.validated_data['trip']
+            motorcycle = Motorcycle.objects.filter(id=bike).first()
+            gas_mileage: GasMileage = GasMileage(user_id=user.id)
+            gas_mileage.trip = result.validated_data.get('trip', gas_mileage.trip)
             gas_mileage.price = result.validated_data['price']
             gas_mileage.amount = result.validated_data['amount']
             gas_mileage.refill_date = result.validated_data['refill_date']
             gas_mileage.remark = result.validated_data['remark']
+            gas_mileage.save()
+            # many to manyにaddする前にインスタンスをsaveしてレコードを生成する必要がある。
+            gas_mileage.bike.add(motorcycle)
             gas_mileage.save()
             return Response({'message': 'ok'}, status=200)
         print(result.errors.__str__())
