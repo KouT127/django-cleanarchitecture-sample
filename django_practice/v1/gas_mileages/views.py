@@ -17,7 +17,7 @@ from django_practice.v1.users.serializers import V1UserResultSerializer, V1UserV
 
 class V1GasMileageView(APIView):
     authentication_classes = (authentication.JSONWebTokenAuthentication,)
-    permission_classes = (permissions.AllowAny,)
+    permission_classes = (permissions.IsAuthenticated,)
 
     @swagger_auto_schema(operation_summary='燃費リスト',
                          responses={200: V1GasMileageResultSerializer(), })
@@ -34,13 +34,14 @@ class V1GasMileageView(APIView):
                          responses={200: V1GasMileageResultSerializer(),
                                     400: V1ErrorMessageResultSerializer(), })
     def post(self, request):
-        serializer = V1GasMileageValidationSerializer(data=request.data)
+        gas_mileage = GasMileage(user=request.user)
+        serializer = V1GasMileageValidationSerializer(gas_mileage, data=request.data)
         if serializer.is_valid():
             bike = serializer.validated_data['bike']
             motorcycle = Motorcycle.objects.filter(id=bike).first()
-            gas_mileage = serializer.save()
-            gas_mileage.bike.add(motorcycle)
-            gas_mileage.save()
+            instance = serializer.save()
+            instance.bike.add(motorcycle)
+            instance.save()
             return Response({'message': 'ok'}, status=200)
         return Response({'message': 'ng'})
 

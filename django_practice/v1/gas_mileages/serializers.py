@@ -70,8 +70,9 @@ class V1GasMileageValidationSerializer(serializers.Serializer):
     )
 
     def create(self, validated_data):
-        user = User.objects.filter(username__contains='admin').first()
-        return self.update(instance=GasMileage(user=user), validated_data=validated_data)
+        pass
+        # user = User.objects.filter(username__contains='admin').first()
+        # return self.update(instance=GasMileage(user=user), validated_data=validated_data)
 
     def update(self, instance, validated_data):
         instance.trip = validated_data.get('trip', instance.trip)
