@@ -45,6 +45,23 @@ class V1GasMileageView(APIView):
             return Response({'message': 'ok'}, status=200)
         return Response({'message': 'ng'})
 
+    def delete(self, request, pk):
+        print(pk)
+        pass
+
+
+class V1GasMileageDetailView(APIView):
+    authentication_classes = (authentication.JSONWebTokenAuthentication,)
+    permission_classes = (permissions.AllowAny,)
+
+    def delete(self, request, pk):
+        print(pk)
+        return Response({'message': 'delete'})
+
+    def get(self, request, pk):
+        return Response({'message': pk})
+
+
 
 class V1UserView(APIView):
 
