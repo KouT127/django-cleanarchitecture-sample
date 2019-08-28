@@ -1,3 +1,5 @@
+from dataclasses import asdict
+
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -12,6 +14,7 @@ class V1TaskView(APIView):
     def get(self, request):
         repository = TaskRepository()
         interactor = TaskInteractor(repository)
-        test = interactor.get()
+        task = interactor.get()
+        print(task)
         # ForeignKeyがつくものはManyをつけないとエラー
         return Response(dict(), status=200)

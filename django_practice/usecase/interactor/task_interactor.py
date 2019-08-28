@@ -5,7 +5,7 @@ class TaskInteractor:
     repository: TaskRepository = None
 
     def __init__(self, repository):
-        self.repository = TaskRepository()
+        self.repository = repository
 
     def get(self):
-        self.repository.find_all()
+        return self.repository.find_all()
