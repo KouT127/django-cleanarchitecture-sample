@@ -1,12 +1,12 @@
 from abc import abstractmethod, ABCMeta
 
-from django_practice.domain.models.task import Task
+from django_practice.domain.entities.task import Task
 
 
 class AbstractTaskRepository(metaclass=ABCMeta):
 
     @abstractmethod
-    def find_all(self):
+    def find_all_tasks(self):
         raise NotImplementedError()
 
     @abstractmethod

@@ -20,10 +20,10 @@ from drf_yasg.generators import OpenAPISchemaGenerator
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 
-from django_practice.interface.controllers.v1.task_views import V1TaskView
+from django_practice.interface.controllers.v1.task_controllers import V1TaskController
 
 urlpatterns = [
-    path('task/', V1TaskView.as_view())
+    path('task/', V1TaskController.as_view())
 ]
 schema_view = get_schema_view(
     openapi.Info(
@@ -34,7 +34,7 @@ schema_view = get_schema_view(
         contact=openapi.Contact(email="contact@snippets.local"),
     ),
     patterns=[
-        path('task/', V1TaskView.as_view())
+        path('task/', V1TaskController.as_view())
     ],
     generator_class=OpenAPISchemaGenerator,
     public=True,
