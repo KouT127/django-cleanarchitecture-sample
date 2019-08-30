@@ -1,5 +1,3 @@
-from rest_framework.utils.serializer_helpers import ReturnList
-
 from django_practice.domain.entities.task import Task
 from django_practice.usecase.output.task_result import TasksResultSerializer
 
